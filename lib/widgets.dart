@@ -1,57 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:dialer/permissions.dart';
+import 'permissions.dart';
 import 'theme.dart';
+import 'package:flutter/material.dart';
 import 'package:provide/provide.dart';
 
-class _DialerDataState extends State<DialerData> {
-  final providers = Providers()
-    ..provide(Provider.value(
-      PhoneNumber(),
-    ));
-  @override
-  Widget build(BuildContext context) {
-    return ProviderNode(
-      providers: providers,
-      child: widget.child,
-    );
-  }
-}
+import 'phone_number.dart';
 
-class Dialer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-  }
-}
-
-class DecoratedDialer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-  }
-}
-
-class NumberPad extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-  }
-}
-
-// class flatDigitButton extends StatelessElement {
-//   @override
-//   Widget build(BuildContext context) {
-
-//   }
-// }
-
-class PhoneNumberDisplay extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-
-  }
-}
-
+/// DialerData is a stateful widget. It holds the phone number
+/// and preserves the model state between hot reloads
 class DialerData extends StatefulWidget {
   DialerData({Key key, this.child}) : super(key: key);
   final Widget child;
@@ -60,60 +15,20 @@ class DialerData extends StatefulWidget {
   createState() => _DialerDataState();
 }
 
+class _DialerDataState extends State<DialerData> {
+  final providers = Providers()
+    ..provide(Provider.value(
+      PhoneNumber(),
+    ));
 
-class DeleteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(Icons.backspace),
-      onPressed: () {
-        Provide.value<PhoneNumber>(context).removeDigit(),
-      },
-      );
-  }
-}
-
-class NumberReadOut extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(15),
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        border: Border.all(color: darkBlue),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        children: <Widget>[
-          PhoneNumberDisplay(),
-          DeleteButton(),
-        ],
-      ),
+    return ProviderNode(
+      providers: providers,
+      child: widget.child,
     );
   }
 }
-
-class DialButton extends StatelessWidget {
-  // one circular button with a phone in the middle to dial to phones 
-  @override
-  Widget build(BuildContext context) {
-
-  }
-}
-
-class DigitButton extends StatelessWidget {
-  // has to take a value to return a button with the value inputed, like the numbers, # and *
-  @override
-  Widget build(BuildContext context) {
-    
-  }
-}
-
-
-/*
-
-
-
 
 /// Dialer UI
 class Dialer extends StatelessWidget {
@@ -263,8 +178,38 @@ class PhoneNumberDisplay extends StatelessWidget {
   }
 }
 
+/// Delete button for phone number
+class DeleteButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.backspace),
+      onPressed: () => Provide.value<PhoneNumber>(context).removeDigit(),
+    );
+  }
+}
 
-*/ 
+/// Displays the entered phone number
+class NumberReadout extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.all(15),
+      padding: const EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        // border: BorderDirectional(bottom: BorderSide(color: darkBlue)),
+        border: Border.all(color: darkBlue),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        children: <Widget>[
+          PhoneNumberDisplay(),
+          DeleteButton(),
+        ],
+      ),
+    );
+  }
+}
 
 
 
