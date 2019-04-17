@@ -3,75 +3,23 @@ import 'package:flutter/widgets.dart';
 import 'widgets.dart';
 import 'theme.dart';
 
-// main is the root or 
-void main() => runApp(MyApp());
+void main() => runApp(
+      Builder(
+        builder: (context) => MaterialApp(
+              theme: phoneTheme(context),
+              title: 'Flutter Dialer',
+              home: Scaffold(
+                body: DialerData(
+                  child: DialerApp(),
+                ),
+              ),
+            ),
+      ),
+    );
 
-class MyApp extends StatelessWidget {
+class DialerApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(child: MyFancyDialer());
+    return Center(child: Text('Hello MWC!'));
   }
-}
-
-class MyDialer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        NumberReadOut(),
-      MyNumPad(),
-      DialButton(),
-      
-      ],);
-  }
-}
-
-class MyNumPad extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-    padding: const EdgeInsets.all(25.0),
-     child: Table(
-      children: [
-        TableRow(
-          children: ['1', '2', '3'].map((d) => DigitButton(d)).toList(),
-        ),
-         TableRow(
-          children: ['4', '5', '6'].map((d) => DigitButton(d)).toList(),
-        ),
-         TableRow(
-          children: ['7', '8', '9'].map((d) => DigitButton(d)).toList(),
-        ),
-         TableRow(
-          children: ['*', '0', '#'].map((d) => DigitButton(d)).toList(),
-        )
-
-      ],
-    ));
-  }
-}
-
-class MyFancyDialer extends StatelessWidget {
-@override
-Widget build(BuildContext context) {
-  return Stack(
-children: <Widget>[
-  Positioned.fill(
-    child: Opacity(
-      opacity: 0.5,
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.bottomRight,
-            colors: [darkBlue, Colors.green,],)
-        ),
-        child: FlutterLogo(),),)
-  ),
-  MyDialer(),
-],
-
-  );
-}
-
 }
