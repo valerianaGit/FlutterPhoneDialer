@@ -270,38 +270,6 @@ class PhoneNumberDisplay extends StatelessWidget {
   }
 }
 
-/// Delete button for phone number
-class DeleteButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(Icons.backspace),
-      onPressed: () => Provide.value<PhoneNumber>(context).removeDigit(),
-    );
-  }
-}
-
-/// Displays the entered phone number
-class NumberReadout extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(15),
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        // border: BorderDirectional(bottom: BorderSide(color: darkBlue)),
-        border: Border.all(color: darkBlue),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Row(
-        children: <Widget>[
-          PhoneNumberDisplay(),
-          DeleteButton(),
-        ],
-      ),
-    );
-  }
-}
 
 */ 
 
