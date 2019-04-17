@@ -44,7 +44,7 @@ class MyNumPad extends StatelessWidget {
           children: ['7', '8', '9'].map((d) => DigitButton(d)).toList(),
         ),
          TableRow(
-          children: ['.', '0', '#'].map((d) => DigitButton(d)).toList(),
+          children: ['*', '0', '#'].map((d) => DigitButton(d)).toList(),
         )
 
       ],
