@@ -4,7 +4,17 @@ import 'theme.dart';
 import 'package:provide/provide.dart';
 
 class _DialerDataState extends State<DialerData> {
-
+  final providers = Providers()
+    ..provide(Provider.value(
+      PhoneNumber(),
+    ));
+  @override
+  Widget build(BuildContext context) {
+    return ProviderNode(
+      providers: providers,
+      child: widget.child,
+    );
+  }
 }
 
 class Dialer extends StatelessWidget {
@@ -42,12 +52,14 @@ class PhoneNumberDisplay extends StatelessWidget {
   }
 }
 
-class DialerData extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+class DialerData extends StatefulWidget {
+  DialerData({Key key, this.child}) : super(key: key);
+  final Widget child;
 
-  }
+  @override
+  createState() => _DialerDataState();
 }
+
 
 class DeleteButton extends StatelessWidget {
   @override
@@ -99,28 +111,9 @@ class DigitButton extends StatelessWidget {
 
 
 /*
-class DialerData extends StatefulWidget {
-  DialerData({Key key, this.child}) : super(key: key);
-  final Widget child;
 
-  @override
-  createState() => _DialerDataState();
-}
 
-class _DialerDataState extends State<DialerData> {
-  final providers = Providers()
-    ..provide(Provider.value(
-      PhoneNumber(),
-    ));
 
-  @override
-  Widget build(BuildContext context) {
-    return ProviderNode(
-      providers: providers,
-      child: widget.child,
-    );
-  }
-}
 
 /// Dialer UI
 class Dialer extends StatelessWidget {
